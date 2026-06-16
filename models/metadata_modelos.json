@@ -1,0 +1,67 @@
+{
+    "mejor_modelo_regresion": "Gradient Boosting",
+    "mejor_modelo_clasificacion": "Logística balanceada",
+    "umbral_clasificacion": 0.4,
+    "modelos_exportados": [
+        {
+            "tipo": "regresion",
+            "modelo": "Dummy mediana",
+            "archivo": "regresion_dummy_mediana.joblib"
+        },
+        {
+            "tipo": "regresion",
+            "modelo": "Regresión lineal",
+            "archivo": "regresion_regresion_lineal.joblib"
+        },
+        {
+            "tipo": "regresion",
+            "modelo": "Ridge",
+            "archivo": "regresion_ridge.joblib"
+        },
+        {
+            "tipo": "regresion",
+            "modelo": "Lasso",
+            "archivo": "regresion_lasso.joblib"
+        },
+        {
+            "tipo": "regresion",
+            "modelo": "Árbol",
+            "archivo": "regresion_arbol.joblib"
+        },
+        {
+            "tipo": "regresion",
+            "modelo": "Random Forest",
+            "archivo": "regresion_random_forest.joblib"
+        },
+        {
+            "tipo": "regresion",
+            "modelo": "Gradient Boosting",
+            "archivo": "regresion_gradient_boosting.joblib"
+        },
+        {
+            "tipo": "clasificacion",
+            "modelo": "Dummy prior",
+            "archivo": "clasificacion_dummy_prior.joblib"
+        },
+        {
+            "tipo": "clasificacion",
+            "modelo": "Logística balanceada",
+            "archivo": "clasificacion_logistica_balanceada.joblib"
+        },
+        {
+            "tipo": "clasificacion",
+            "modelo": "Árbol balanceado",
+            "archivo": "clasificacion_arbol_balanceado.joblib"
+        },
+        {
+            "tipo": "clasificacion",
+            "modelo": "Random Forest balanceado",
+            "archivo": "clasificacion_random_forest_balanceado.joblib"
+        },
+        {
+            "tipo": "clasificacion",
+            "modelo": "Gradient Boosting",
+            "archivo": "clasificacion_gradient_boosting.joblib"
+        }
+    ]
+}
