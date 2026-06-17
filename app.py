@@ -190,6 +190,10 @@ def obtener_importancias(pipeline):
     return importancias.sort_values("magnitud", ascending=False)
 
 
+
+
+
+
 def matriz_confusion_modelo(pipeline, X, y_real, umbral):
     probas = extraer_proba(pipeline, X)
     pred = (probas >= umbral).astype(int)
@@ -212,17 +216,68 @@ def resumen_faltantes(df):
     return faltantes.sort_values(["faltantes", "variable"], ascending=[False, True])
 
 
+
+
+# Inicio de las Páginas
+
 def mostrar_inicio(df, metadata):
     st.title("Sistema actuarial de predicción de riesgo y costo esperado")
     st.write(
         "Aplicación en Streamlit basada en los resultados exportados por "
         "`notebooks/01_eda_modelado.ipynb`. La app carga modelos ya entrenados; "
-        "no ajusta modelos predictivos."
+        "no ajusta modelos predictivos." 
+
+
     )
-    st.caption(
+    st.write(
         "Al importar el CSV se aplica la misma eliminación de outliers del notebook: "
-        "percentil 99.5 sobre `log_costo`, `log_suma_asegurada` y `ratio_costo_prima`."
+        "percentil 99.5 sobre `log_costo`, `log_suma_asegurada` y `ratio_costo_prima`, que es "
+        "el cociente entre el costo y su prima. Esto deribado a que al sacar el logaritmo se puede suavizar " \
+        "el efecto que los Outliers tienen a la muestra, dandole también sea dicho de paso, un aspecto más simietrico." \
+        "Al sacar aquellos miembros que se encontraban fuera del percentil 99.5, se esta sacando a aquellos miembros que inculso con esta " \
+        "version suavizada, siguen muy por afuera de la distribución de la muestra. Se hara el supuesto de que esos registros o bien " \
+        "no son correctos, o en su defecto, estan gobernados por otro tipo de factores ajenos a la base, es decir," \
+        "no son parte de la misma población o forman parte de un sector muy particular de la población que requiere otro " \
+        "tratamiento."
     )
+
+    st.write(
+        'Sucede que para cualquier empresa, determinar los costos que va a implicar el desarollo' \
+        'de un porducto es escencial. Muchas veces se tiene una ganancia bruta muy buena,' \
+        'pero esta se ve mermada por los costos. En un contexto de seguros varios costos. ' \
+        'Pudiendo ser los que se asocian a la operación de la empresa, como el pago de empleados, luz, agua, etc. o bien,' \
+        'los derivados de la siniestralidad, que pudieran ser el pago de los distintos beneficios y los medios' \
+        'para darlos que se encuentran en su póliza.' )
+
+    st.write(
+        'El conocer los costos deriva a una mejor estimación del precio que debe tener una prima, para que ' \
+        'se puedan cumplir las diversas promesas que se ven estipuladas en las pólizas.' )
+    
+
+    st.write(
+        'Saber si una prima es de riesgo alto es escencial para una aseguradora, pues, desde un inicio, ' \
+        'puede negarte la cobertura, porque, desde un inicio, se reconoce que la realizacón del siniestro ya no ' \
+        'es algo aleatorio, sino, algo cierto. O en su defecto, cobrar una sobre prima, para ajustar ' \
+        'ajustada a la probabiliad de que suceda en particular a dicho cliente.')
+    
+    st.write(
+        ' La base cuenta con 31 columnas, 30 variables, de las cuales 14 se trataro como nuermicas y las otras' \
+        '16 como categóricas. Inicialmente se contaba con 1500 polizas. ')
+    
+    st.subheader(' Objetivo del Proyecto ')
+    st.write('El objetivo del proyecto es poder estimar dichos costos, y a su vez, si una poliza puede ser de alto riesgo o no' \
+    'en funcion a las variables propuestas por la base, para la parte representaiva de la muestra, o dicho de otras palabras, intentar '
+    'estimar para aquellos que no estan influidos por otros factores tal vez no explicados por la base o en su defecto, afectados '
+    'por condiciones de mero azar.')
+    
+
+    
+    
+
+
+
+
+    st.divider()
 
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Pólizas", f"{len(df):,}")
@@ -241,8 +296,8 @@ def mostrar_inicio(df, metadata):
         "- `utils/preprocessing.py`"
     )
 
-    st.subheader("Muestra de datos")
-    st.dataframe(df.head(10), use_container_width=True)
+    st.subheader("Datos sin Outliers")
+    st.dataframe(df, use_container_width=True)
 
 
 def mostrar_exploracion(df):
@@ -265,6 +320,7 @@ def mostrar_exploracion(df):
             columnas_balance,
             index=columnas_balance.index("riesgo_alto")
         )
+
         balance = df[variable_balance].value_counts(dropna=False).rename_axis(variable_balance).reset_index(name="conteo")
         balance[variable_balance] = balance[variable_balance].replace({0: "Bajo", 1: "Alto"}).astype(str)
         fig = px.bar(
@@ -278,18 +334,47 @@ def mostrar_exploracion(df):
         fig.update_layout(showlegend=False, xaxis_title=variable_balance, yaxis_title="Conteo")
         st.plotly_chart(fig, use_container_width=True)
 
+
+    ## Columnas numericas.
+
     columnas_numericas = df.select_dtypes(include=["number"]).columns.tolist()
     variable = st.selectbox(
         "Variable numérica",
         columnas_numericas,
         index=columnas_numericas.index("costo_esperado_anual_mxn")
     )
+
+    categorica =['deducible_pct',
+                'riesgo_alto',
+                'sexo',
+                'estado_civil',
+                'nivel_estudios',
+                'ocupacion',
+                'zona_residencia',
+                'region',
+                'tipo_vehiculo',
+                'uso_vehiculo',
+                'segmento_marca',
+                'metodo_pago',
+                'canal_venta',
+                'tiene_gps',
+                'asistencia_vial',
+                'mantenimiento_al_dia',
+                'clase_costo',
+                'siniestros_en_12m',
+                'prima_mayor_a_mediana',
+                'grupo_edad_conductor'] 
+    
+    vcategorica = st.selectbox('Categoría',
+                            categorica)
+    
+    nbins = st.slider('Intervalos de las observaciones',2, 250)
     fig_hist = px.histogram(
         df,
         x=variable,
-        color=df["riesgo_alto"].map({0: "Riesgo bajo", 1: "Riesgo alto"}),
+        color=df[vcategorica],
         marginal="box",
-        nbins=45,
+        nbins= nbins,
         barmode="overlay",
         template="plotly_white"
     )
@@ -306,6 +391,8 @@ def mostrar_exploracion(df):
         zmax=1,
         aspect="auto",
         height=850
+    
+    
     )
     fig_corr.update_traces(xgap=1, ygap=1)
     fig_corr.update_layout(
@@ -319,12 +406,25 @@ def mostrar_exploracion(df):
 
 def mostrar_preprocesamiento(df, pipeline_regresion):
     st.header("Preprocesamiento")
-    st.write(
-        "La app reutiliza el pipeline ajustado en el notebook. El flujo guardado aplica "
-        "ingeniería de variables, imputación, escalamiento y codificación antes de predecir."
+    st.write(' Una vez elminados los Outliers de la base, se separa en 3 conjuntos la muestra.' \
+    'Uno para entrenar la variables, otro de validación y otro para comparar modelos y seleccionar parametos ' \
+    'y finalmente otro para probar si este generaliza. Se estratifico por riesgo para que permanezca estable el balance en estas 3 submuestras'
+
     )
 
+    st.write(
+            'Posteriormente, se construyo un Pipline que: ' )
+   
+    st.write('Si era númerica, al ya no tener los Outliers de las variables que más relación tenina, se puede' \
+            'estandarizar sin mayor problema, y luego, imputar por KNN, con 3 vecinos cercanos.')
+
+    st.write('Si era de otra, solamente imputar por moda. Luego si esta era Ordinal, códificar mediante las listas de orden creadas.' )
+    st.write('Si era binaria, codificar el sí y no a 1 y 0.')
+    st.write('Despues con esta se almientaron los modelos')
+
     resumen = resumen_preprocesador(pipeline_regresion)
+
+
     matriz = pipeline_regresion.named_steps["preprocesado"].get_feature_names_out()
 
     col1, col2, col3 = st.columns(3)
@@ -339,7 +439,7 @@ def mostrar_preprocesamiento(df, pipeline_regresion):
     st.write(
         "- `log_ingreso_mensual` y `log_suma_asegurada`\n"
         "- `km_totales` y `log_km_totales`\n"
-        "- `siniestros_en_12m`, `prima_mayor_a_mediana` y `grupo_edad_conductor`"
+        "- `siniestros_en_12m` y `grupo_edad_conductor`"
     )
 
     st.subheader("Ejemplo de matriz de características")
@@ -489,6 +589,8 @@ def calcular_pca_visual(df, pipeline_regresion):
     preprocesado = pipeline_regresion.named_steps["preprocesado"]
     matriz = preprocesado.transform(feature_engineering.transform(X))
 
+
+
     pca = PCA(n_components=2, random_state=RANDOM_STATE)
     componentes = pca.fit_transform(matriz)
 
@@ -504,6 +606,19 @@ def mostrar_pca(df, pipeline_regresion):
         "Para visualizar la cartera, se reutiliza el preprocesador ya ajustado dentro "
         "del mejor modelo de regresión y se calcula una proyección PCA de dos componentes."
     )
+
+
+    st.write('Principal Component Analysis (PCA) es una técnica de reducción de dimensionalidad no supervisada.' \
+    ' Su funcionamiento consiste en proyectar las características originales sobre nuevas direcciones, y calcular su varianza, ' \
+    'se quedaran aquellas que maximizan la varianza.' \
+    ' La primera componente principal es la combinación lineal de todas las variables originales que captura la máxima varianza posible.' \
+    ' La segunda componente es la combinación lineal ortogonal a la primera que captura la máxima varianza restante, y así sucesivamente.' \
+    ' La suma de las varianzas de los componentes dira cuanta información se ve preservada en estas ' \
+    'compoententes principales.' \
+    'En este caso 2 componentes no es suficiente, pues solo preserva el 18%'
+    )
+
+
 
     colorear_por = st.radio("Colorear por", ["riesgo_alto", "clase_costo"], horizontal=True)
     df_pca, varianza = calcular_pca_visual(df, pipeline_regresion)

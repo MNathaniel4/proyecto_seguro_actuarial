@@ -1,7 +1,7 @@
 {
-    "mejor_modelo_regresion": "Gradient Boosting",
+    "mejor_modelo_regresion": "Random Forest",
     "mejor_modelo_clasificacion": "Logística balanceada",
-    "umbral_clasificacion": 0.4,
+    "umbral_clasificacion": 0.56,
     "modelos_exportados": [
         {
             "tipo": "regresion",

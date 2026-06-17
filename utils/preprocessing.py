@@ -29,8 +29,10 @@ class ActuarialFeatureEngineer(BaseEstimator, TransformerMixin):
         X['km_totales'] = edad_carro * km_anuales
         X['log_km_totales'] = np.log1p(X["km_totales"])
 
-        X['siniestros_en_12m'] = np.where(siniestros_12m > 0, "Si", "No")
-        X['prima_mayor_a_mediana'] = np.where(prima > self.prima_mediana_, "Si", "No")
+        # X['siniestros_en_12m'] = np.where(siniestros_12m > 0, "Si", "No")
+        # X['prima_mayor_a_mediana'] = np.where(prima > self.prima_mediana_, "Si", "No")
+
+        # Algunos intentos de la discritización
 
         X['grupo_edad_conductor'] = pd.cut(
             edad,
