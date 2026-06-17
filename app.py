@@ -315,18 +315,18 @@ def mostrar_inicio(df, metadata):
     st.write(
         "Al importar el CSV se aplica la misma eliminación de outliers del notebook: "
         "percentil 99.5 sobre `log_costo`, `log_suma_asegurada` y `ratio_costo_prima`, que es "
-        "el cociente entre el costo y su prima. Esto deribado a que al sacar el logaritmo se puede suavizar " \
-        "el efecto que los Outliers tienen a la muestra, dandole también sea dicho de paso, un aspecto más simietrico." \
-        "Al sacar aquellos miembros que se encontraban fuera del percentil 99.5, se esta sacando a aquellos miembros que inculso con esta " \
-        "version suavizada, siguen muy por afuera de la distribución de la muestra. Se hara el supuesto de que esos registros o bien " \
-        "no son correctos, o en su defecto, estan gobernados por otro tipo de factores ajenos a la base, es decir," \
+        "el cociente entre el costo y su prima. Esto derivado a que al sacar el logaritmo se puede suavizar " \
+        "el efecto que los Outliers tienen a la muestra, dándole también sea dicho de paso, un aspecto más simiétrico." \
+        "Al sacar aquellos miembros que se encontraban fuera del percentil 99.5, se está sacando a aquellos miembros que inculso con esta " \
+        "versión suavizada, siguen muy por afuera de la distribución de la muestra. Se hará el supuesto de que esos registros o bien " \
+        "no son correctos, o en su defecto, están gobernados por otro tipo de factores ajenos a la base, es decir," \
         "no son parte de la misma población o forman parte de un sector muy particular de la población que requiere otro " \
         "tratamiento."
     )
 
     st.write(
-        'Sucede que para cualquier empresa, determinar los costos que va a implicar el desarollo' \
-        'de un porducto es escencial. Muchas veces se tiene una ganancia bruta muy buena,' \
+        'Sucede que, para cualquier empresa, determinar los costos que va a implicar el desarrollo' \
+        'de un proucto es esencial. Muchas veces se tiene una ganancia bruta muy buena,' \
         'pero esta se ve mermada por los costos. En un contexto de seguros varios costos. ' \
         'Pudiendo ser los que se asocian a la operación de la empresa, como el pago de empleados, luz, agua, etc. o bien,' \
         'los derivados de la siniestralidad, que pudieran ser el pago de los distintos beneficios y los medios' \
@@ -338,19 +338,19 @@ def mostrar_inicio(df, metadata):
     
 
     st.write(
-        'Saber si una prima es de riesgo alto es escencial para una aseguradora, pues, desde un inicio, ' \
-        'puede negarte la cobertura, porque, desde un inicio, se reconoce que la realizacón del siniestro ya no ' \
-        'es algo aleatorio, sino, algo cierto. O en su defecto, cobrar una sobre prima, para ajustar ' \
+        'Saber si una prima es de riesgo alto es esencial para una aseguradora, pues, desde un inicio, ' \
+        'puede negarte la cobertura, porque, desde un inicio, se reconoce que la realización del siniestro ya no ' \
+        'es algo aleatorio, si no, algo cierto. O en su defecto, cobrar una sobre prima, para ajustar ' \
         'ajustada a la probabiliad de que suceda en particular a dicho cliente.')
     
     st.write(
-        ' La base cuenta con 31 columnas, 30 variables, de las cuales 14 se trataro como nuermicas y las otras' \
-        '16 como categóricas. Inicialmente se contaba con 1500 polizas. ')
+        ' La base cuenta con 31 columnas, 30 variables, de las cuales 14 se trataron como numéricas y las otras' \
+        '16 como categóricas. Inicialmente se contaba con 1500 pólizas. ')
     
     st.subheader(' Objetivo del Proyecto ')
     st.write('El objetivo del proyecto es poder estimar dichos costos, y a su vez, si una poliza puede ser de alto riesgo o no' \
     'en funcion a las variables propuestas por la base, para la parte representaiva de la muestra, o dicho de otras palabras, intentar '
-    'estimar para aquellos que no estan influidos por otros factores tal vez no explicados por la base o en su defecto, afectados '
+    'estimar para aquellos que no están influidos por otros factores tal vez no explicados por la base o en su defecto, afectados '
     'por condiciones de mero azar.')
     
     st.divider()
