@@ -1038,16 +1038,29 @@ def mostrar_imagenes():
 def mostrar_conclusiones():
     st.header("Conclusiones")
     st.write(
-                '- Se notó un cambio muy significativo en las métricas al retirar los valores que se considerarón atípicos.\n '
-                '- El cambio de hacer la partición de los datos desde el inicio también representó una novedad que condujo a tener que pensar de manera distinta.\n' \
-                '- Hubo varios problemas de data leakage, debido al tratamiento que se le dio para hacer el EDA, que se pudieron resolver, como el uso de estadístico de toda la base, ' \
-                'transformaciones de los datos de toda la base que después se colaron en el entrenamiento, etc.\n'
-                '- Como posible mejora podría ser un refinamiento del pipeline, que al ser un nuevo instrumento usado limitó por su parte tal vez parte de la creatividad para realizar ' \
-                'el preprocesamiento a los datos. Una mayor soltura con este podría resultar en la implementación de mejores metodologías.\n' 
-                '- La falta de costumbre de trabajar en equipo para la realización de códigos, y especialmente los que son largos también fueron una limitante, pues, ' \
-                'cada quien tiene una manera de trabajar y razonar distinta, por lo que las implementaciones de ideas, correcciones y mejoras fueron más complicadas de lo necesario por influir ' \
-                'en el flujo de trabajo de la aplicación. Desarrollar un plan de trabajo más estructurado, con insumos de entrada y productos, en lo particular, de qué tipo son, resultará luego ' \
-                'en menos problemas intermedios.'
+'- Como puntos a destacar durante el desarrollo: notamos que, aunque no sea deseado, el retirar valores atípicos trajo una mejora significativa a los modelos. '
+    'También la necesidad de analizar detenidamente el problema, por ejemplo, encontramos que era urgente eliminar la variable clase_costo pues replicaba a nuestra '
+    'variable objetivo en el caso de riesgo alto, llevando a una clasificación casi perfecta. Por último la importancia de generar no dos sino tres splits de los '
+    'datos para poder ajustar parámetros sin data leakage.\n',
+    '- Los resultados muestran que es posible capturar patrones importantes en una cartera de pólizas. Esta información es fundamental para mantener las finanzas '
+    'de la compañía saludables.\n',
+    '- Entre las principales limitaciones se encuentra el uso de una base de datos sintética que, si bien está permitido en la CUSF, no podemos asegurar que sea correcta, '
+    'por lo que los resultados no deben interpretarse como reales. Además, presenta outliers extremos que al no conocer mejor un contexto de los mismos dañan la '
+    'capacidad predictiva del modelo. Por ello, si bien es una prueba demostrativa robusta, un uso real requiere validaciones con las que no contamos.\n',
+    '- El cambio de hacer la partición de los datos desde el inicio también representó una novedad que condujo a tener que pensar de manera distinta.\n',
+    '- Hubo varios problemas de data leakage, debido al tratamiento que se le dio para hacer el EDA, que se pudieron resolver, como el uso de estadístico de toda la base, '
+    'transformaciones de los datos de toda la base que después se colaron en el entrenamiento, etc.\n',
+    '- Como posible mejora podría ser un refinamiento del pipeline, que al ser un nuevo instrumento usado limitó por su parte tal vez parte de la creatividad para realizar '
+    'el preprocesamiento a los datos. Una mayor soltura con este podría resultar en la implementación de mejores metodologías.\n',
+    '- La falta de costumbre de trabajar en equipo para la realización de códigos, y especialmente los que son largos también fueron una limitante, pues, '
+    'cada quien tiene una manera de trabajar y razonar distinta, por lo que las implementaciones de ideas, correcciones y mejoras fueron más complicadas de lo necesario por influir '
+    'en el flujo de trabajo de la aplicación. Desarrollar un plan de trabajo más estructurado, con insumos de entrada y productos, en lo particular, de qué tipo son, resultará luego '
+    'en menos problemas intermedios.\n',
+    '- El proyecto logró integrar el flujo completo de análisis actuarial utilizando herramientas de machine learning. La exploración, limpieza, preprocesamiento, '
+    'entrenamiento, evaluación y representación fueron automatizados gracias al uso de un Pipeline.\n',
+    '- Este proyecto demuestra cómo las herramientas de ciencia de datos y machine learning pueden mejorar la toma de decisiones actuariales, ya que sus modelos '
+    'obtuvieron mejores resultados y, además, pueden automatizarse fácilmente, permitiendo a los equipos de expertos enfocarse en los casos en los que el modelo falla.'
+
     )
 
 
