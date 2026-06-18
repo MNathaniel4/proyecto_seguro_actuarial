@@ -1038,11 +1038,16 @@ def mostrar_imagenes():
 def mostrar_conclusiones():
     st.header("Conclusiones")
     st.write(
-        "- La app usa modelos y métricas ya exportados; esto evita reentrenar en cada ejecución.\n"
-        "- El mejor regresor guardado es Gradient Boosting y el clasificador operativo es logística balanceada.\n"
-        "- La clasificación usa un umbral ajustado para priorizar sensibilidad ante pólizas de mayor riesgo.\n"
-        "- Las importancias de Random Forest ayudan a interpretar señales actuariales como suma asegurada, siniestros y prima.\n"
-        "- El módulo de imágenes demuestra operaciones básicas útiles para inspeccionar evidencia visual."
+                '- Se notó un cambio muy significativo en las métricas al retirar los valores que se considerarón atípicos.\n '
+                '- El cambio de hacer la partición de los datos desde el inicio también representó una novedad que condujo a tener que pensar de manera distinta.\n' \
+                '- Hubo varios problemas de data leakage, debido al tratamiento que se le dio para hacer el EDA, que se pudieron resolver, como el uso de estadístico de toda la base, ' \
+                'transformaciones de los datos de toda la base que después se colaron en el entrenamiento, etc.\n'
+                '- Como posible mejora podría ser un refinamiento del pipeline, que al ser un nuevo instrumento usado limitó por su parte tal vez parte de la creatividad para realizar ' \
+                'el preprocesamiento a los datos. Una mayor soltura con este podría resultar en la implementación de mejores metodologías.\n' 
+                '- La falta de costumbre de trabajar en equipo para la realización de códigos, y especialmente los que son largos también fueron una limitante, pues, ' \
+                'cada quien tiene una manera de trabajar y razonar distinta, por lo que las implementaciones de ideas, correcciones y mejoras fueron más complicadas de lo necesario por influir ' \
+                'en el flujo de trabajo de la aplicación. Desarrollar un plan de trabajo más estructurado, con insumos de entrada y productos, en lo particular, de qué tipo son, resultará luego ' \
+                'en menos problemas intermedios.'
     )
 
 
