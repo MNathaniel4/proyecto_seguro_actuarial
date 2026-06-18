@@ -112,7 +112,7 @@ Desde la carpeta raiz del proyecto:
 streamlit run app.py
 ```
 
-La app valida que existan los archivos requeridos en `data/`, `models/`, `outputs/` y `utils/`. Si falta algun archivo, Streamlit mostrara una lista de elementos faltantes y detendra la ejecucion.__NOTA: ESTOS ARCHIVOS SE GENERAN AL EJECUTAR EL NOTEBOOK__ . En este caso ya vienen cargados al repositorios los resultados.
+La app valida que existan los archivos requeridos en `data/`, `models/`, `outputs/` y `utils/`. Si falta algun archivo, Streamlit mostrara una lista de elementos faltantes y detendra la ejecucion.__NOTA: ESTOS ARCHIVOS SE GENERAN AL EJECUTAR EL NOTEBOOK__ . En este caso ya vienen cargados al repositorio los resultados.
 
 ## Modulos principales
 
