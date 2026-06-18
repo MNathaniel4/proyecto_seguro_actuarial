@@ -19,23 +19,23 @@ La base `seguro_auto_actuarial.csv` es sintetica, academica y no contiene datos 
 |-- notebooks/
 |   `-- 01_eda_modelado.ipynb
 |-- models/
-    |-- clasificacion_arbol_balanceado.joblib
-    |-- clasificacion_dummy_prior.joblib
-    |-- clasificacion_gradient_boosting.joblib
-    |-- clasificacion_logistica_balanceada.joblib
-    |-- clasificacion_random_forest_balanceado.joblib
-    |-- mejor_modelo_clasificacion.joblib
-    |-- mejor_modelo_regresion.joblib
-    |-- metadata_modelos.json
-    |-- regresion_arbol.joblib
-    |-- regresion_ridge.joblib
+|   |-- clasificacion_arbol_balanceado.joblib
+|   |-- clasificacion_dummy_prior.joblib
+|   |-- clasificacion_gradient_boosting.joblib
+|   |-- clasificacion_logistica_balanceada.joblib
+|   |-- clasificacion_random_forest_balanceado.joblib
+|   |-- mejor_modelo_clasificacion.joblib
+|   |-- mejor_modelo_regresion.joblib
+|   |-- metadata_modelos.json
+|   |-- regresion_arbol.joblib
+|   |-- regresion_ridge.joblib
 |-- outputs/
 |   |-- comparacion_modelos_regresion.csv
 |   |-- comparacion_modelos_clasificacion.csv
 |   |-- importancias_rf_regresion.csv
 |   `-- importancias_rf_clasificacion.csv
 `-- utils/
-    |-- preprocessing.py
+|   |-- preprocessing.py
 |--assets
 |   | --Carro.jpg
 |   | --OIP.jpg  
