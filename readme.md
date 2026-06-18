@@ -19,10 +19,16 @@ La base `seguro_auto_actuarial.csv` es sintetica, academica y no contiene datos 
 |-- notebooks/
 |   `-- 01_eda_modelado.ipynb
 |-- models/
-|   |-- mejor_modelo_regresion.joblib
-|   |-- mejor_modelo_clasificacion.joblib
-|   |-- metadata_modelos.json
-|   `-- otros modelos exportados
+    |-- clasificacion_arbol_balanceado.joblib
+    |-- clasificacion_dummy_prior.joblib
+    |-- clasificacion_gradient_boosting.joblib
+    |-- clasificacion_logistica_balanceada.joblib
+    |-- clasificacion_random_forest_balanceado.joblib
+    |-- mejor_modelo_clasificacion.joblib
+    |-- mejor_modelo_regresion.joblib
+    |-- metadata_modelos.json
+    |-- regresion_arbol.joblib
+    |-- regresion_ridge.joblib
 |-- outputs/
 |   |-- comparacion_modelos_regresion.csv
 |   |-- comparacion_modelos_clasificacion.csv
@@ -30,10 +36,47 @@ La base `seguro_auto_actuarial.csv` es sintetica, academica y no contiene datos 
 |   `-- importancias_rf_clasificacion.csv
 `-- utils/
     |-- preprocessing.py
-    `-- Modficador_imagens.py
+|--assets
+|   | --Carro.jpg
+|   | --OIP.jpg  
 ```
 
 ## Instalacion
+
+
+Si se hace por anaconda: 
+
+Abra Anaconda Promt y vaya a la carpeta raíz con `cd`. 
+Se recomienda la creación de un nuevo ambiente.
+
+```bash
+conda create --name ambiente  
+```
+Se recommienda que sea `python==3.11.14`.
+
+
+Activar ambiente:
+```bash
+conda activate ambiente  
+```
+
+
+Si por algún motivo no estuviera `pip` instalado ya:
+```bash
+conda install pip
+```
+
+
+Instalar dependencias:
+```bash
+pip install -r requirements.txt
+```
+
+
+
+
+
+De otra forma: 
 
 Se recomienda usar un entorno virtual.
 
@@ -57,6 +100,8 @@ Instalar dependencias:
 
 ```bash
 pip install -r requirements.txt
+
+
 ```
 
 ## Ejecucion de la aplicacion
@@ -67,7 +112,7 @@ Desde la carpeta raiz del proyecto:
 streamlit run app.py
 ```
 
-La app valida que existan los archivos requeridos en `data/`, `models/`, `outputs/` y `utils/`. Si falta algun archivo, Streamlit mostrara una lista de elementos faltantes y detendra la ejecucion.
+La app valida que existan los archivos requeridos en `data/`, `models/`, `outputs/` y `utils/`. Si falta algun archivo, Streamlit mostrara una lista de elementos faltantes y detendra la ejecucion.__NOTA: ESTOS ARCHIVOS SE GENERAN AL EJECUTAR EL NOTEBOOK__ . En este caso ya vienen cargados al repositorios los resultados.
 
 ## Modulos principales
 
@@ -142,4 +187,4 @@ jupyter notebook notebooks/01_eda_modelado.ipynb
 
 ## Entregables relacionados
 
-Segun `indicaciones.txt`, el proyecto se complementa con un reporte breve y un video demostrativo de 6 a 10 minutos mostrando la app funcionando, las decisiones metodologicas, los modelos, el simulador y el modulo de imagenes.
+El proyecto se complementa con un reporte breve y un video demostrativo mostrando la app funcionando, las decisiones metodologicas, los modelos, el simulador y el modulo de imagenes.
